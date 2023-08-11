@@ -1,0 +1,54 @@
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func main() {
+	input := `    [D]    
+[N] [C]    
+[Z] [M] [P]
+ 1   2   3 
+
+move 1 from 2 to 1
+move 3 from 1 to 3
+move 2 from 2 to 1
+move 1 from 1 to 2`
+
+	lines := strings.Split(input, "\n")
+
+	inputCrate := make([]string, 0)
+	crate := make([][]rune, 0)
+	isCratePart := true
+	for _, line := range lines {
+		if line == "" {
+
+			isCratePart = false
+			index := inputCrate[len(inputCrate)-1]
+			count := 0
+			for rni, rn := range index {
+				if rn != ' ' {
+
+					fmt.Println(rni)
+					for i, pkg := range inputCrate {
+						// for _, stuff := range pkg {
+						// 	if unicode.IsUpper(stuff) {
+						// 		crate[count][i] = stuff
+						// 	}
+						// }
+						fmt.Println(i, pkg)
+					}
+					count++
+				}
+			}
+
+		}
+		if isCratePart {
+			inputCrate = append(inputCrate, line)
+		} else {
+			fmt.Println(line)
+		}
+	}
+	fmt.Println(crate)
+}
